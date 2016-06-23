@@ -1,0 +1,33 @@
+{
+  "name": "store",
+  "runtime": "python2.7",
+  "description": "Serverless Lambda function for project: serverless-etl-demo",
+  "customName": false,
+  "customRole": false,
+  "handler": "handler.handler",
+  "timeout": 6,
+  "memorySize": 128,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": []
+  },
+  "endpoints": [],
+  "events": [
+    {
+      "name": "StoreImageListener",
+      "type": "sns",
+      "config": {
+        "topicName": "EtlDemoImages-${stage}"
+      }
+    }
+  ],
+  "environment": {
+    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_STAGE": "${stage}",
+    "SERVERLESS_REGION": "${region}"
+  },
+  "vpc": {
+    "securityGroupIds": [],
+    "subnetIds": []
+  }
+}

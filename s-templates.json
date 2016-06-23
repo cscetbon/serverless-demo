@@ -1,0 +1,27 @@
+{
+  "apiGatewayRequestTemplate": {
+    "application/json": "{\r\n  \"body\" : $input.json('$'),\r\n  \"headers\": {\r\n    #foreach($header in $input.params().header.keySet())\r\n    \"$header\": \"$util.escapeJavaScript($input.params().header.get($header))\" #if($foreach.hasNext),#end\r\n    #end\r\n  },\r\n  \"method\": \"$context.httpMethod\",\r\n  \"params\": {\r\n    #foreach($param in $input.params().path.keySet())\r\n    \"$param\": \"$util.escapeJavaScript($input.params().path.get($param))\" #if($foreach.hasNext),#end\r\n    #end\r\n  },\r\n  \"query\": {\r\n    #foreach($queryParam in $input.params().querystring.keySet())\r\n    \"$queryParam\": \"$util.escapeJavaScript($input.params().querystring.get($queryParam))\" #if($foreach.hasNext),#end\r\n    #end\r\n  }\r\n}"
+  },
+  "apiGatewayResponseTemplate": {
+    "400": {
+      "selectionPattern": "^\\[BadRequest\\].*",
+      "statusCode": "400"
+    },
+    "404": {
+      "selectionPattern": "^\\[NotFound\\].*",
+      "statusCode": "404"
+    },
+    "500": {
+      "selectionPattern": "^\\[Error\\].*",
+      "statusCode": "500"
+    },
+    "default": {
+      "statusCode": "200",
+      "responseParameters": {},
+      "responseModels": {},
+      "responseTemplates": {
+        "application/json": ""
+      }
+    }
+  }
+}

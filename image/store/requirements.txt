@@ -1,0 +1,2 @@
+pynamodb==1.5.1
+python-magic==0.4.11

@@ -1,0 +1,22 @@
+# Logs
+logs
+*.log
+
+# Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+
+#IDE
+**/.idea
+
+#OS
+.DS_Store
+.tmp
+
+#SERVERLESS
+admin.env
+.env
+
+#Ignore _meta folder
+_meta
+env
+*.egg-info
